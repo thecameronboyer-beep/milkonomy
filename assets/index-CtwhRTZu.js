@@ -1,0 +1,1 @@
+import{d as t,aw as r,ax as a,o,c as s}from"./vue-ChOYFNDu.js";const m=t({__name:"index",setup(n){const e=r();return a().replace({path:`/${e.params.path}`,query:e.query}),(c,p)=>(o(),s("div"))}});export{m as default};
