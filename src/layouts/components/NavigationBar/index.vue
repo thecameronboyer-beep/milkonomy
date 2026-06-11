@@ -1,18 +1,20 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/pinia/stores/app"
-import { useSettingsStore } from "@/pinia/stores/settings"
 import Globalization from "@@/components/Globalization/index.vue"
 import Screenfull from "@@/components/Screenfull/index.vue"
 import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
+import { useAppStore } from "@/pinia/stores/app"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { Breadcrumb, Hamburger, Sidebar } from "../index"
+import RightPanel from "../RightPanel/index.vue"
+import Settings from "../Settings/index.vue"
 
 const { isMobile } = useDevice()
 const { isTop } = useLayoutMode()
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
-const { showThemeSwitch, showScreenfull } = storeToRefs(settingsStore)
+const { showSettings, showThemeSwitch, showScreenfull } = storeToRefs(settingsStore)
 
 /** 切换侧边栏 */
 function toggleSidebar() {
@@ -32,6 +34,9 @@ function toggleSidebar() {
     <Sidebar v-if="isTop && !isMobile" class="sidebar" />
     <div class="right-menu">
       <!-- <SearchMenu v-if="showSearchMenu" class="right-menu-item" /> -->
+      <RightPanel v-if="showSettings">
+        <Settings />
+      </RightPanel>
       <Globalization />
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
