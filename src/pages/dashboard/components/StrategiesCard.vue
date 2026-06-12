@@ -807,7 +807,7 @@ watch(() => props.data, () => {
                               <ItemIcon class="strategy-sub-source-icon" :hrid="sourcePriceRow.priceRow.hrid" :width="STRATEGY_SUB_SOURCE_ICON_SIZE" :height="STRATEGY_SUB_SOURCE_ICON_SIZE" />
                             </template>
                           </el-table-column>
-                          <el-table-column width="62" class-name="strategy-product-usage-button-column">
+                          <el-table-column width="54" class-name="strategy-product-usage-button-column">
                             <template #default="{ row: sourcePriceRow }">
                               <el-button
                                 v-if="hasProductUsageOptions(sourcePriceRow)"
@@ -821,7 +821,7 @@ watch(() => props.data, () => {
                               </el-button>
                             </template>
                           </el-table-column>
-                          <el-table-column prop="price" :label="t('市场价格')" min-width="120">
+                          <el-table-column prop="price" :label="t('市场价格')" min-width="120" class-name="strategy-market-price-column">
                             <template #default="{ row: sourcePriceRow }">
                               <div v-if="sourcePriceRow.priceRow.hrid === COIN_HRID">
                                 {{ Format.price(sourcePriceRow.priceRow.price) }}
@@ -848,7 +848,7 @@ watch(() => props.data, () => {
                       <ItemIcon class="strategy-sub-icon" :hrid="priceRow.hrid" :width="STRATEGY_SUB_ICON_SIZE" :height="STRATEGY_SUB_ICON_SIZE" />
                     </template>
                   </el-table-column>
-                  <el-table-column width="62" class-name="strategy-source-button-column">
+                  <el-table-column width="54" class-name="strategy-source-button-column">
                     <template #default="{ row: priceRow }">
                       <el-button
                         class="strategy-source-button"
@@ -861,7 +861,7 @@ watch(() => props.data, () => {
                       </el-button>
                     </template>
                   </el-table-column>
-                  <el-table-column prop="price" :label="t('市场价格')" min-width="120">
+                  <el-table-column prop="price" :label="t('市场价格')" min-width="120" class-name="strategy-market-price-column">
                     <template #default="{ row: priceRow }">
                       <div v-if="priceRow.hrid === COIN_HRID">
                         {{ Format.price(priceRow.price) }}
@@ -1145,7 +1145,7 @@ watch(() => props.data, () => {
 .strategy-price-section--input::before {
   content: "";
   position: absolute;
-  top: -96px;
+  top: -61px;
   bottom: 42px;
   left: 2px;
   z-index: 3;
@@ -1225,6 +1225,19 @@ watch(() => props.data, () => {
   padding: 4px 0 0 0;
   overflow: visible;
   text-overflow: clip;
+}
+
+.strategy-input-table :deep(.el-table__body-wrapper .strategy-market-price-column),
+.strategy-source-table :deep(.el-table__body-wrapper .strategy-market-price-column) {
+  vertical-align: top;
+}
+
+.strategy-input-table :deep(.el-table__body-wrapper .strategy-market-price-column .cell),
+.strategy-source-table :deep(.el-table__body-wrapper .strategy-market-price-column .cell) {
+  min-height: 28px;
+  padding: 4px 0 0 2px;
+  line-height: 24px;
+  white-space: nowrap;
 }
 
 .strategy-input-table :deep(.el-table__body-wrapper .strategy-sub-icon-column .cell) {
